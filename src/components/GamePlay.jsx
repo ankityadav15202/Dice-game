@@ -4,21 +4,20 @@ import { NumberSelector } from "./NumberSelector"
 import { RoleDice } from "./RoleDice"
 import { useState } from "react"
 import { Button, OutlineButton } from "../styled/Button"
+import { Ruless } from "./Ruless"
 
 export const GamePlay = () => {
   const [Score, setScore] = useState(0)
   const [SelectedNumber, setSelectedNumber] = useState()
   const [CurrentDice, setCurrentDice] = useState(1)
   const [error, seterror] = useState("")
-  const [Rules,setRules] = useState("")
+  const [Rules,setRules] = useState(false)
 
   const RandomNumbergenerator = (min, max)=>{
     return Math.floor(Math.random() * (max - min) + min)
   }
 
-  const rule = ()=>{
-    setRules({})
-  }
+  
   
   const rollDice = ()=>{
     if(SelectedNumber==undefined){
@@ -54,8 +53,9 @@ export const GamePlay = () => {
         <RoleDice CurrentDice={CurrentDice} rollDice={rollDice} />
         <div className="btns">
             <OutlineButton onClick={()=>setScore(0)}>Reset Score</OutlineButton>
-            <Button>Show Rules</Button>
+            <Button onClick={()=> setRules((prev)=>!prev)} >Show Rules</Button>
         </div>
+        {Rules ? <Ruless/> : ""}
     </MainContainer>
   )
 }

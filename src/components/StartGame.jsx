@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import { Button } from "../styled/Button"
-import dice from "../../public/img/dices.svg"
+import dice from "/img/dices.svg"
 
 export const StartGame = ({toggle}) => {
   return (
